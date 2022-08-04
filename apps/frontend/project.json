@@ -15,7 +15,8 @@
         "assets": ["apps/frontend/src/favicon.ico", "apps/frontend/src/assets"],
         "styles": [
           "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-          "apps/frontend/src/styles.css"
+          "apps/frontend/src/styles.css",
+          "apps/frontend/src/assets/styles/variables.css"
         ],
         "scripts": []
       },

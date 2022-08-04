@@ -1,0 +1,19 @@
+
+nav {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 10px 10px 0px 10px;
+    width: 100vw;
+    background-color: var(--primary);
+}
+
+nav>button {
+    height: 80%;
+    background-color: var(--primary);
+}
+
+nav>button:hover {
+
+    background-color: var(--primary-light);
+}
