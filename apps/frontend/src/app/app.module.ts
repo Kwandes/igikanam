@@ -1,14 +1,43 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CharacterListComponent } from './pages/character-list/character-list.component';
+import { AbilitiesComponent } from './pages/character/abilities/abilities.component';
+import { AdvantagesDisadvantagesComponent } from './pages/character/advantages-disadvantages/advantages-disadvantages.component';
+import { AttributesComponent } from './pages/character/attributes/attributes.component';
+import { CharacterComponent } from './pages/character/character.component';
+import { CombatTechniquesComponent } from './pages/character/combat-techniques/combat-techniques.component';
+import { OverviewComponent } from './pages/character/overview/overview.component';
+import { SkillsComponent } from './pages/character/skills/skills.component';
+import { SpecialAbilitiesComponent } from './pages/character/special-abilities/special-abilities.component';
+import { SpellsComponent } from './pages/character/spells/spells.component';
+import { EquipmentComponent } from './pages/character/equipment/equipment.component';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
-  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule],
+  declarations: [
+    AppComponent,
+    CharacterListComponent,
+    OverviewComponent,
+    AttributesComponent,
+    AbilitiesComponent,
+    SkillsComponent,
+    CombatTechniquesComponent,
+    SpecialAbilitiesComponent,
+    AdvantagesDisadvantagesComponent,
+    SpellsComponent,
+    CharacterComponent,
+    EquipmentComponent,
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
