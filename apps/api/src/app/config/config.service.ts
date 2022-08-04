@@ -42,7 +42,7 @@ class ConfigService {
       port: parseInt(this.getValue('MONGO_PORT', false)) || 27017,
       username: this.getValue('MONGO_USER', false) || 'root',
       password: this.getValue('MONGO_PASSWORD', false) || 'root',
-      database: this.getValue('MONGO_DATABASE', false) || 'shitpost_generator',
+      database: this.getValue('MONGO_DATABASE', false) || 'igikanam',
       ssl: this.getValue('MONGO_SLL', false) === 'true' || false,
 
       entities: [User],

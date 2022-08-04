@@ -3,9 +3,9 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
-    "interfaces": "libs/interfaces",
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
+    "interfaces": "libs/interfaces",
     "models": "libs/models"
   }
 }
