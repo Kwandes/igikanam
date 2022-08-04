@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@igikanam/api-interfaces';
+import { Component } from '@angular/core';
+import { Message } from '@igikanam/interfaces';
 
 @Component({
   selector: 'igikanam-root',

@@ -5,7 +5,6 @@ import { ISourceTag } from './source-tag.interface';
 import { ISpecialAbility } from './special-ability.interface';
 
 export interface ICharacter extends IBase {
-  characterId: string;
   totalAp: number;
   spentAp: number;
   personalData: {

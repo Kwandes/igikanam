@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@igikanam/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@igikanam/interfaces": ["libs/interfaces/src/index.ts"],
+      "@igikanam/models": ["libs/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
