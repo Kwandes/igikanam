@@ -1,5 +1,7 @@
 # Igi kanam
 
+The DSA homebrewer.
+
 Character creation website based on the DSA system, but not limited to the official rules and abilities.\
 Inspired by the [Optolith app](https://optolith.app/en), Igikanam aims to provide similiar functionality with more freedom to customize the available options, and as a website as opposed to installable app.
 
