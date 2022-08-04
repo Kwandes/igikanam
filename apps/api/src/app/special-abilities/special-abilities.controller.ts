@@ -27,8 +27,8 @@ import { ParseObjectIdPipe } from '../shared/pipes/object-id-vaidation.pipe';
 import { SpecialAbilitiesService } from './special-abilities.service';
 
 @ApiBearerAuth()
-@ApiTags('Special Abilities')
-@Controller('special-abilities')
+@ApiTags('Source Tags')
+@Controller('source-tags')
 export class SpecialAbilitiesController {
   constructor(
     private readonly specialAbilitiesService: SpecialAbilitiesService
@@ -44,16 +44,30 @@ export class SpecialAbilitiesController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Roles(Role.admin)
-  @Get(':id')
-  @ApiOperation({ summary: 'Get a a specialAbility by id. Role: Admin' })
-  @ApiOkResponse({ type: SpecialAbility })
-  get(@Param('id', ParseObjectIdPipe) id: string): Promise<ISpecialAbility> {
-    return this.specialAbilitiesService.findOne(id);
+  @Roles(Role.user, Role.admin)
+  @Get('me')
+  @ApiOperation({
+    summary: 'Get a list of all specialAbilities of authenticated user',
+  })
+  @ApiOkResponse({ type: [SpecialAbility] })
+  async getAllOfMe(@AuthUser() user: User): Promise<ISpecialAbility[]> {
+    return this.specialAbilitiesService.findAllOfUser(user);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Roles(Role.admin)
+  @Roles(Role.user, Role.admin)
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a a specialAbility by id. Role: Admin' })
+  @ApiOkResponse({ type: SpecialAbility })
+  get(
+    @Param('id', ParseObjectIdPipe) id: string,
+    @AuthUser() user: User
+  ): Promise<ISpecialAbility> {
+    return this.specialAbilitiesService.findOne(id, user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Roles(Role.user, Role.admin)
   @Post('')
   @ApiOperation({
     summary:
@@ -71,13 +85,16 @@ export class SpecialAbilitiesController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Roles(Role.admin)
+  @Roles(Role.user, Role.admin)
   @Delete(':id')
   @HttpCode(204)
   @ApiOperation({
     summary: 'Delete a specific specialAbility. Role: Admin',
   })
-  delete(@Param('id', ParseObjectIdPipe) id: string): Promise<void> {
-    return this.specialAbilitiesService.perish(id);
+  delete(
+    @Param('id', ParseObjectIdPipe) id: string,
+    @AuthUser() user: User
+  ): Promise<void> {
+    return this.specialAbilitiesService.perish(id, user);
   }
 }

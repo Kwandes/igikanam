@@ -16,6 +16,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
+import { ObjectID } from 'typeorm';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Roles } from '../auth/roles.decorator';
 import { AuthUser } from '../auth/user.decorator';
@@ -38,16 +39,30 @@ export class SourceTagsController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Roles(Role.admin)
-  @Get(':id')
-  @ApiOperation({ summary: 'Get a a sourceTag by id. Role: Admin' })
-  @ApiOkResponse({ type: SourceTag })
-  get(@Param('id', ParseObjectIdPipe) id: string): Promise<ISourceTag> {
-    return this.sourceTagsService.findOne(id);
+  @Roles(Role.user, Role.admin)
+  @Get('me')
+  @ApiOperation({
+    summary: 'Get a list of all sourceTags of authenticated user',
+  })
+  @ApiOkResponse({ type: [SourceTag] })
+  async getAllOfMe(@AuthUser() user: User): Promise<ISourceTag[]> {
+    return this.sourceTagsService.findAllOfUser(user);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Roles(Role.admin)
+  @Roles(Role.user, Role.admin)
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a a sourceTag by id. Role: Admin' })
+  @ApiOkResponse({ type: SourceTag })
+  get(
+    @Param('id', ParseObjectIdPipe) id: ObjectID,
+    @AuthUser() user: User
+  ): Promise<ISourceTag> {
+    return this.sourceTagsService.findOne(id, user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Roles(Role.user, Role.admin)
   @Post('')
   @ApiOperation({
     summary:
@@ -62,13 +77,16 @@ export class SourceTagsController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Roles(Role.admin)
+  @Roles(Role.user, Role.admin)
   @Delete(':id')
   @HttpCode(204)
   @ApiOperation({
     summary: 'Delete a specific sourceTag. Role: Admin',
   })
-  delete(@Param('id', ParseObjectIdPipe) id: string): Promise<void> {
-    return this.sourceTagsService.perish(id);
+  delete(
+    @Param('id', ParseObjectIdPipe) id: ObjectID,
+    @AuthUser() user: User
+  ): Promise<void> {
+    return this.sourceTagsService.perish(id, user);
   }
 }
