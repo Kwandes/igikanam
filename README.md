@@ -19,3 +19,7 @@ The alternate name closer to the german origin (Das Schwarze Auge - the black ey
 ## How to run/use
 
 To be determined, the project is still in early stages of development
+
+## License
+
+Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
