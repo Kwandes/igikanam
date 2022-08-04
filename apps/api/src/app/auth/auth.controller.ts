@@ -18,7 +18,6 @@ export class AuthController {
   @ApiOkResponse({ type: LoginResponse })
   async login(@Request() req, @Body() LoginRequest: LoginRequest) {
     // uses the passport library logic to obtain the user
-    console.log('request', req);
     return this.authService.login(req.user);
   }
 

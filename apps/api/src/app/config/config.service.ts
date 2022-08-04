@@ -1,4 +1,4 @@
-import { User } from '@igikanam/models';
+import { SourceTag, SpecialAbility, User } from '@igikanam/models';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -45,7 +45,7 @@ class ConfigService {
       database: this.getValue('MONGO_DATABASE', false) || 'igikanam',
       ssl: this.getValue('MONGO_SLL', false) === 'true' || false,
 
-      entities: [User],
+      entities: [User, SourceTag, SpecialAbility],
     };
   }
 }

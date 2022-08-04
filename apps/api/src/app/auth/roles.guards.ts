@@ -35,7 +35,7 @@ export class RolesGuard implements CanActivate {
     );
 
     // validate that the token contains an email
-    if (!jwt.email) {
+    if (!jwt || !jwt.email) {
       return false;
     }
 

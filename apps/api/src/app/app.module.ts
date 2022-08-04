@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { configService } from './config/config.service';
 import { LoggerMiddleware } from './middleware/logging.middleware';
+import { SourceTagsModule } from './source-tags/source-tags.module';
+import { SpecialAbilitiesModule } from './special-abilities/special-abilities.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -12,6 +14,8 @@ import { UsersModule } from './users/users.module';
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
     AuthModule,
     UsersModule,
+    SourceTagsModule,
+    SpecialAbilitiesModule,
   ],
   controllers: [AppController],
   providers: [],

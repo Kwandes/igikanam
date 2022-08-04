@@ -1,7 +1,7 @@
-import { IBase } from './base.interface';
+import { ICreatedBy } from './base.interface';
 import { ISourceTag } from './source-tag.interface';
 
-export interface ISkill extends IBase {
+export interface ISkill extends ICreatedBy {
   name: string;
   check: string;
   quality: string;
@@ -14,5 +14,4 @@ export interface ISkill extends IBase {
   newApplication: string;
   category: string;
   source: ISourceTag;
-  userId: string;
 }

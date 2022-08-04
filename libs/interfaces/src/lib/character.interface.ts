@@ -1,10 +1,10 @@
 import { IAttribute } from './attribute.interface';
-import { IBase } from './base.interface';
+import { ICreatedBy } from './base.interface';
 import { ISkill } from './skill.interface';
 import { ISourceTag } from './source-tag.interface';
 import { ISpecialAbility } from './special-ability.interface';
 
-export interface ICharacter extends IBase {
+export interface ICharacter extends ICreatedBy {
   totalAp: number;
   spentAp: number;
   personalData: {
