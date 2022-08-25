@@ -1,5 +1,10 @@
-import { CreateSourceTagRequest, ISourceTag, Role } from '@igikanam/interfaces';
-import { SourceTag, User } from '@igikanam/models';
+import {
+  CreateSourceTagRequest,
+  IJwtInfo,
+  ISourceTag,
+  Role,
+} from '@igikanam/interfaces';
+import { SourceTag } from '@igikanam/models';
 import {
   Body,
   Controller,
@@ -7,6 +12,7 @@ import {
   Get,
   HttpCode,
   Param,
+  ParseUUIDPipe,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -16,11 +22,9 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { ObjectID } from 'typeorm';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Roles } from '../auth/roles.decorator';
 import { AuthUser } from '../auth/user.decorator';
-import { ParseObjectIdPipe } from '../shared/pipes/object-id-vaidation.pipe';
 import { SourceTagsService } from './source-tags.service';
 
 @ApiBearerAuth()
@@ -45,7 +49,7 @@ export class SourceTagsController {
     summary: 'Get a list of all sourceTags of authenticated user',
   })
   @ApiOkResponse({ type: [SourceTag] })
-  async getAllOfMe(@AuthUser() user: User): Promise<ISourceTag[]> {
+  async getAllOfMe(@AuthUser() user: IJwtInfo): Promise<ISourceTag[]> {
     return this.sourceTagsService.findAllOfUser(user);
   }
 
@@ -55,8 +59,8 @@ export class SourceTagsController {
   @ApiOperation({ summary: 'Get a a sourceTag by id. Role: Admin' })
   @ApiOkResponse({ type: SourceTag })
   get(
-    @Param('id', ParseObjectIdPipe) id: ObjectID,
-    @AuthUser() user: User
+    @Param('id', ParseUUIDPipe) id: string,
+    @AuthUser() user: IJwtInfo
   ): Promise<ISourceTag> {
     return this.sourceTagsService.findOne(id, user);
   }
@@ -71,7 +75,7 @@ export class SourceTagsController {
   @ApiOkResponse({ type: SourceTag })
   create(
     @Body() createSourceTagRequest: CreateSourceTagRequest,
-    @AuthUser() user: User
+    @AuthUser() user: IJwtInfo
   ): Promise<ISourceTag> {
     return this.sourceTagsService.create(createSourceTagRequest, user);
   }
@@ -84,8 +88,8 @@ export class SourceTagsController {
     summary: 'Delete a specific sourceTag. Role: Admin',
   })
   delete(
-    @Param('id', ParseObjectIdPipe) id: ObjectID,
-    @AuthUser() user: User
+    @Param('id', ParseUUIDPipe) id: string,
+    @AuthUser() user: IJwtInfo
   ): Promise<void> {
     return this.sourceTagsService.perish(id, user);
   }

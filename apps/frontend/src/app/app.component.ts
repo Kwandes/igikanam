@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Message } from '@igikanam/interfaces';
 
 @Component({
   selector: 'igikanam-root',
@@ -8,6 +7,6 @@ import { Message } from '@igikanam/interfaces';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
+  hello$ = this.http.get<any>('/api/hello');
   constructor(private http: HttpClient) {}
 }

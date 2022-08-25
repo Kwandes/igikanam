@@ -32,18 +32,14 @@ class ConfigService {
 
   public getTypeOrmConfig(): TypeOrmModuleOptions {
     return {
-      type: 'mongodb',
-      synchronize: false,
-      useUnifiedTopology: true, // Current Server Discovery and Monitoring engine current version is deprecated, setting this to true uses the new stuff
-      useNewUrlParser: true,
+      type: 'postgres',
+      synchronize: true,
 
-      authSource: 'admin', //  extra step needed to mongoDb
-      host: this.getValue('MONGO_HOST', false) || 'localhost',
-      port: parseInt(this.getValue('MONGO_PORT', false)) || 27017,
-      username: this.getValue('MONGO_USER', false) || 'root',
-      password: this.getValue('MONGO_PASSWORD', false) || 'root',
-      database: this.getValue('MONGO_DATABASE', false) || 'igikanam',
-      ssl: this.getValue('MONGO_SLL', false) === 'true' || false,
+      host: this.getValue('POSTGRES_HOST', false) || 'localhost',
+      port: parseInt(this.getValue('POSTGRES_PORT', false)) || 5432,
+      username: this.getValue('POSTGRES_USER', false) || 'root',
+      password: this.getValue('POSTGRES_PASSWORD', false) || 'root',
+      database: this.getValue('POSTGRES_DATABASE', false) || 'igikanam',
 
       entities: [User, SourceTag, SpecialAbility],
     };

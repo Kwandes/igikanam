@@ -7,6 +7,6 @@ import { User } from './user.entity';
 export abstract class CreatedBy extends Base {
   @ApiModelProperty()
   @ManyToOne(() => User, { onDelete: 'SET NULL' })
-  @JoinColumn({ name: 'createdBy' })
+  @JoinColumn()
   createdBy?: User;
 }

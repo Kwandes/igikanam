@@ -41,6 +41,9 @@ export class RolesGuard implements CanActivate {
 
     // fetch a user based on the email and check their role
     const user = await this.usersService.findOne(jwt.email);
+    if (!user) {
+      return false;
+    }
     return requiredRoles.some((role) => user.role?.includes(role));
   }
 }

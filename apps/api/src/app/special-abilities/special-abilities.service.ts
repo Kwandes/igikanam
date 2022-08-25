@@ -1,21 +1,23 @@
 import {
   ICreateSpecialAbilityRequest,
+  IJwtInfo,
   ISpecialAbility,
-  IUser,
   Role,
 } from '@igikanam/interfaces';
 import { SpecialAbility } from '@igikanam/models';
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EntityNotFoundError, ObjectID, Repository } from 'typeorm';
+import { EntityNotFoundError, Repository } from 'typeorm';
 import { SourceTagsService } from '../source-tags/source-tags.service';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class SpecialAbilitiesService {
   constructor(
     @InjectRepository(SpecialAbility)
     private readonly specialAbilityRepo: Repository<SpecialAbility>,
-    private readonly sourceTagsService: SourceTagsService
+    private readonly sourceTagsService: SourceTagsService,
+    private readonly usersService: UsersService
   ) {}
 
   /**
@@ -23,15 +25,20 @@ export class SpecialAbilitiesService {
    * @returns Array of entities.
    */
   async findAll(): Promise<SpecialAbility[]> {
-    return this.specialAbilityRepo.find();
+    return this.specialAbilityRepo.find({
+      relations: ['createdBy', 'sourceTag'],
+    });
   }
 
   /**
    * Find all Special Ability entities of given user.
    * @returns Array of entities.
    */
-  async findAllOfUser(user: IUser): Promise<SpecialAbility[]> {
-    return this.specialAbilityRepo.find({ where: user });
+  async findAllOfUser(createdBy: IJwtInfo): Promise<SpecialAbility[]> {
+    return this.specialAbilityRepo.find({
+      where: { createdBy: { userId: createdBy.userId } },
+      relations: ['createdBy', 'sourceTag'],
+    });
   }
 
   /**
@@ -39,11 +46,15 @@ export class SpecialAbilitiesService {
    * @param id id of the specialAbility.
    * @returns specialAbility or undefined.
    */
-  async findOne(id: string, user: IUser): Promise<SpecialAbility | undefined> {
-    const foundSpecialAbility = await this.specialAbilityRepo.findOne({
+  async findOne(
+    id: string,
+    user: IJwtInfo
+  ): Promise<SpecialAbility | undefined> {
+    const foundSpecialAbility = await this.specialAbilityRepo.findOneOrFail({
       where: {
-        _id: new ObjectID(id),
+        abilityId: id,
       },
+      relations: ['createdBy', 'sourceTag'],
     });
     if (user.role !== Role.admin && foundSpecialAbility.createdBy !== user) {
       throw new ForbiddenException();
@@ -58,24 +69,25 @@ export class SpecialAbilitiesService {
    */
   async create(
     request: ICreateSpecialAbilityRequest,
-    createdBy: IUser
+    createdBy: IJwtInfo
   ): Promise<ISpecialAbility> {
     const { name, rule, prerequisites, apValue, level, sourceTagId, category } =
       request;
     const sourceTag = await this.sourceTagsService.findOne(
-      new ObjectID(sourceTagId),
+      sourceTagId,
       createdBy
     );
+    const user = await this.usersService.findOne(createdBy.email);
     const newSpecialAbility = this.specialAbilityRepo.create({
       name,
       rule,
       prerequisites,
       apValue,
       level,
-      source: sourceTag,
       category,
-      createdBy,
     });
+    newSpecialAbility.createdBy = user;
+    newSpecialAbility.sourceTag = sourceTag;
     return this.specialAbilityRepo.save(newSpecialAbility);
   }
 
@@ -84,10 +96,10 @@ export class SpecialAbilitiesService {
    * @param id id of the entity.
    * @returns void or EntityNotFound error.
    */
-  async perish(id: string, user): Promise<void> {
+  async perish(id: string, user: IJwtInfo): Promise<void> {
     await this.findOne(id, user); // verify it exists and belongs to the given user
     const response = await this.specialAbilityRepo.delete({
-      _id: new ObjectID(id),
+      abilityId: id,
     });
 
     if (response.affected === 0) {

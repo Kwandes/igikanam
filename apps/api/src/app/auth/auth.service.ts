@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
+  IJwtInfo,
   ILoginResponse,
   ISignupRequest,
   ISignupResponse,
@@ -40,7 +41,11 @@ export class AuthService {
    * @returns generated JWT.
    */
   async login(user: IUser): Promise<ILoginResponse> {
-    const payload = { email: user.email, id: user.id };
+    const payload: IJwtInfo = {
+      email: user.email,
+      userId: user.userId,
+      role: user.role,
+    };
     return {
       accessToken: this.jwtService.sign(payload),
       role: user.role,

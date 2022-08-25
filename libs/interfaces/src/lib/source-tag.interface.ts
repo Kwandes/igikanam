@@ -3,6 +3,7 @@ import { IsNotEmpty } from 'class-validator';
 import { ICreatedBy } from './base.interface';
 
 export interface ISourceTag extends ICreatedBy {
+  tagId: string;
   name: string;
 }
 

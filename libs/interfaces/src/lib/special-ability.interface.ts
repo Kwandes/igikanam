@@ -4,12 +4,13 @@ import { ICreatedBy } from './base.interface';
 import { ISourceTag } from './source-tag.interface';
 
 export interface ISpecialAbility extends ICreatedBy {
+  abilityId: string;
   name: string;
   rule: string;
   prerequisites: string;
   apValue: number;
   level?: number;
-  source: ISourceTag;
+  sourceTag?: ISourceTag;
   category: string;
 }
 

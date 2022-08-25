@@ -1,9 +1,10 @@
 import {
   CreateSpecialAbilityRequest,
+  IJwtInfo,
   ISpecialAbility,
   Role,
 } from '@igikanam/interfaces';
-import { SpecialAbility, User } from '@igikanam/models';
+import { SpecialAbility } from '@igikanam/models';
 import {
   Body,
   Controller,
@@ -11,6 +12,7 @@ import {
   Get,
   HttpCode,
   Param,
+  ParseUUIDPipe,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -23,12 +25,11 @@ import {
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Roles } from '../auth/roles.decorator';
 import { AuthUser } from '../auth/user.decorator';
-import { ParseObjectIdPipe } from '../shared/pipes/object-id-vaidation.pipe';
 import { SpecialAbilitiesService } from './special-abilities.service';
 
 @ApiBearerAuth()
-@ApiTags('Source Tags')
-@Controller('source-tags')
+@ApiTags('Special Abilities')
+@Controller('special-abilities')
 export class SpecialAbilitiesController {
   constructor(
     private readonly specialAbilitiesService: SpecialAbilitiesService
@@ -50,7 +51,7 @@ export class SpecialAbilitiesController {
     summary: 'Get a list of all specialAbilities of authenticated user',
   })
   @ApiOkResponse({ type: [SpecialAbility] })
-  async getAllOfMe(@AuthUser() user: User): Promise<ISpecialAbility[]> {
+  async getAllOfMe(@AuthUser() user: IJwtInfo): Promise<ISpecialAbility[]> {
     return this.specialAbilitiesService.findAllOfUser(user);
   }
 
@@ -60,8 +61,8 @@ export class SpecialAbilitiesController {
   @ApiOperation({ summary: 'Get a a specialAbility by id. Role: Admin' })
   @ApiOkResponse({ type: SpecialAbility })
   get(
-    @Param('id', ParseObjectIdPipe) id: string,
-    @AuthUser() user: User
+    @Param('id', ParseUUIDPipe) id: string,
+    @AuthUser() user: IJwtInfo
   ): Promise<ISpecialAbility> {
     return this.specialAbilitiesService.findOne(id, user);
   }
@@ -76,7 +77,7 @@ export class SpecialAbilitiesController {
   @ApiOkResponse({ type: SpecialAbility })
   create(
     @Body() createSpecialAbilityRequest: CreateSpecialAbilityRequest,
-    @AuthUser() user: User
+    @AuthUser() user: IJwtInfo
   ): Promise<ISpecialAbility> {
     return this.specialAbilitiesService.create(
       createSpecialAbilityRequest,
@@ -92,8 +93,8 @@ export class SpecialAbilitiesController {
     summary: 'Delete a specific specialAbility. Role: Admin',
   })
   delete(
-    @Param('id', ParseObjectIdPipe) id: string,
-    @AuthUser() user: User
+    @Param('id', ParseUUIDPipe) id: string,
+    @AuthUser() user: IJwtInfo
   ): Promise<void> {
     return this.specialAbilitiesService.perish(id, user);
   }

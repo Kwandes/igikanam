@@ -2,6 +2,7 @@ import { ICreatedBy } from './base.interface';
 import { ISourceTag } from './source-tag.interface';
 
 export interface ISkill extends ICreatedBy {
+  skillId: string;
   name: string;
   check: string;
   quality: string;

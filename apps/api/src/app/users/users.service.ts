@@ -17,7 +17,7 @@ export class UsersService {
    * @returns user or undefined.
    */
   async findOne(email: string): Promise<User | undefined> {
-    return this.userRepo.findOne({ where: { email: email } });
+    return this.userRepo.findOneOrFail({ where: { email: email } });
   }
 
   /**

@@ -5,6 +5,7 @@ import { ISourceTag } from './source-tag.interface';
 import { ISpecialAbility } from './special-ability.interface';
 
 export interface ICharacter extends ICreatedBy {
+  characterId: string;
   totalAp: number;
   spentAp: number;
   personalData: {

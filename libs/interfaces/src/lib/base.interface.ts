@@ -1,7 +1,6 @@
 import { IUser } from './user.interface';
 
 export interface IBase {
-  id: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

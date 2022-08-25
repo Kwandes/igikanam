@@ -19,3 +19,9 @@ export interface ISignupResponse {
   accessToken: string;
   role: Role;
 }
+
+export interface IJwtInfo {
+  userId: string;
+  role: Role;
+  email: string;
+}
