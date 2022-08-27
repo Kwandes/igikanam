@@ -6,6 +6,7 @@
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
     "interfaces": "libs/interfaces",
-    "models": "libs/models"
+    "models": "libs/models",
+    "seeder": "apps/seeder"
   }
 }

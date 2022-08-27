@@ -33,7 +33,7 @@ export class SpecialAbility extends CreatedBy implements ISpecialAbility {
   apValue!: number;
 
   @ApiModelProperty()
-  @Column()
+  @Column({ nullable: true })
   level?: number | undefined;
 
   @ApiModelProperty()
