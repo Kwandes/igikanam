@@ -46,7 +46,7 @@ export class SourceTagsService {
       relations: ['createdBy'],
     });
     if (
-      user.role !== Role.admin ||
+      user.role !== Role.admin &&
       foundSourceTag.createdBy.userId !== user.userId
     ) {
       throw new ForbiddenException();
@@ -64,7 +64,6 @@ export class SourceTagsService {
     createdBy: IJwtInfo
   ): Promise<ISourceTag> {
     const { name } = request;
-    console.log('createdBy', createdBy);
     const newSourceTag = this.sourceTagRepo.create({
       name,
       createdBy,

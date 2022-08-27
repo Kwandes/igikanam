@@ -9,6 +9,7 @@
     "build": "nx build",
     "test:frontend": "nx test frontend",
     "test:api": "nx test api",
+    "test:ci": "npm run seed && npm run test:api",
     "seed": "nx run seeder:build && node ./dist/apps/seeder/main"
   },
   "private": true,
