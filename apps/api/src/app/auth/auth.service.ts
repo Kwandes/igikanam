@@ -6,7 +6,9 @@ import {
   ISignupRequest,
   ISignupResponse,
   IUser,
+  LoginRequest,
 } from '@igikanam/interfaces';
+import { User } from '@igikanam/models';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -24,9 +26,14 @@ export class AuthService {
    * @param loginRequestDto user credentials.
    * @returns validated user information or null.
    */
-  async validateUser(loginRequestDto): Promise<any> {
+  async validateUser(loginRequestDto: LoginRequest): Promise<any> {
     const { email, password } = loginRequestDto;
-    const user = await this.usersService.findOne(email);
+    let user: User;
+    try {
+      user = await this.usersService.findOne(email);
+    } catch (exception) {
+      // ignore the exception
+    }
     if (user && (await this.compareHashes(password, user.password))) {
       const { password, ...result } = user;
       return result;
@@ -59,7 +66,13 @@ export class AuthService {
    */
   async signup(signupRequestDto: ISignupRequest): Promise<ISignupResponse> {
     const { email, password } = signupRequestDto;
-    if (await this.usersService.findOne(email)) {
+    let foundUser: User;
+    try {
+      foundUser = await this.usersService.findOne(email);
+    } catch (exception) {
+      // ignore the exception
+    }
+    if (foundUser) {
       throw new BadRequestException(
         `This email is already taken. Try adding some random digits to it 👍`
       );

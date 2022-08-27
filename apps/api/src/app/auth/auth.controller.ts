@@ -4,7 +4,14 @@ import {
   LoginResponse,
   SignupRequest,
 } from '@igikanam/interfaces';
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
@@ -20,6 +27,7 @@ export class AuthController {
     summary: `Log in with as an existing user`,
   })
   @ApiOkResponse({ type: LoginResponse })
+  @HttpCode(200)
   async login(@Request() req, @Body() LoginRequest: LoginRequest) {
     // uses the passport library logic to obtain the user
     return this.authService.login(req.user);
