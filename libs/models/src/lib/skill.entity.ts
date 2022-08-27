@@ -1,89 +1,83 @@
+import { ISkill } from '@igikanam/interfaces';
 import { ApiModelProperty } from '@nestjs/swagger/dist/decorators/api-model-property.decorator';
-import { IsNotEmpty } from 'class-validator';
-import { ICreatedBy } from './base.interface';
-import { ISourceTag } from './source-tag.interface';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { CreatedBy } from './created-by.entity';
+import { SourceTag } from './source-tag.entity';
 
-export interface ISkill extends ICreatedBy {
-  skillId: string;
-  name: string;
-  check: string;
-  quality: string;
-  failedCheck: string;
-  criticalSuccess: string;
-  botch: string;
-  improvementCost: string;
-  applications: string;
-  uses: string;
-  newApplication: string;
-  category: string;
-  sourceTag?: ISourceTag;
-}
+@Entity('skills')
+export class Skill extends CreatedBy implements ISkill {
+  @ApiModelProperty({ example: '80a0d2ac-ec67-482e-9017-909b72a74be7' })
+  @PrimaryGeneratedColumn('uuid')
+  skillId!: string;
 
-export interface ICreateSkillRequest {
-  name: string;
-  check: string;
-  quality: string;
-  failedCheck: string;
-  criticalSuccess: string;
-  botch: string;
-  improvementCost: string;
-  applications: string;
-  uses: string;
-  newApplication: string;
-  category: string;
-  sourceTagId: string;
-}
-
-export class CreateSkillRequest implements ICreateSkillRequest {
   @ApiModelProperty({ example: 'Body Control' })
-  @IsNotEmpty()
+  @Column()
   name!: string;
+
   @ApiModelProperty({
     example: 'AGI/AGI/CON',
   })
-  @IsNotEmpty()
+  @Column()
   check!: string;
+
   @ApiModelProperty({
     example: 'the adventurer can more quickly squirm out of restraints.',
   })
-  @IsNotEmpty()
+  @Column()
   quality!: string;
+
   @ApiModelProperty({
     example:
       'the action fails partially, requires more time, or leads to mistakes, perhaps forcing the hero to abort the action.',
   })
-  @IsNotEmpty()
+  @Column()
   failedCheck!: string;
+
   @ApiModelProperty({
     example:
       'the action succeeds and the hero still has another action remaining. Whatever was attempted, the hero looked very graceful.',
   })
-  @IsNotEmpty()
+  @Column()
   criticalSuccess!: string;
+
   @ApiModelProperty({
     example:
       'the hero falls down and suffers an injury (1D6 DP, ignoring PRO).',
   })
-  @IsNotEmpty()
+  @Column()
   botch!: string;
+
   @ApiModelProperty({ example: 'D' })
-  @IsNotEmpty()
+  @Column()
   improvementCost!: string;
+
   @ApiModelProperty({
     example: 'Acrobatics, Balance, Combat Maneuver, Jumping, Running, Squirm',
   })
-  @IsNotEmpty()
+  @Column()
   applications!: string;
+
   @ApiModelProperty({ example: 'Tumbling' })
-  @IsNotEmpty()
+  @Column()
   uses!: string;
+
   @ApiModelProperty({ example: 'Skiing' })
-  @IsNotEmpty()
+  @Column()
   newApplication!: string;
+
   @ApiModelProperty({ example: '80a0d2ac-ec67-482e-9017-909b72a74be7' })
-  @IsNotEmpty()
-  sourceTagId: string;
+  @Column()
+  @ManyToOne(() => SourceTag, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'sourceTag' })
+  sourceTag?: SourceTag;
+
   @ApiModelProperty({ example: 'Combat' })
-  @IsNotEmpty()
+  @Column()
   category!: string;
 }

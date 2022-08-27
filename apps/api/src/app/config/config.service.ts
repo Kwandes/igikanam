@@ -1,4 +1,4 @@
-import { SourceTag, SpecialAbility, User } from '@igikanam/models';
+import { Skill, SourceTag, SpecialAbility, User } from '@igikanam/models';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -41,7 +41,7 @@ class ConfigService {
       password: this.getValue('POSTGRES_PASSWORD', false) || 'root',
       database: this.getValue('POSTGRES_DATABASE', false) || 'igikanam',
 
-      entities: [User, SourceTag, SpecialAbility],
+      entities: [User, SourceTag, SpecialAbility, Skill],
     };
   }
 }
