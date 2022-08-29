@@ -1,4 +1,5 @@
 export * from './lib/base.entity';
+export * from './lib/combat-technique.entity';
 export * from './lib/created-by.entity';
 export * from './lib/skill.entity';
 export * from './lib/source-tag.entity';
