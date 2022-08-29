@@ -34,7 +34,7 @@ export const SpecialAbilities: ISpecialAbility[] = [
     createdBy: users[2], // admin
   },
   {
-    abilityId: '26ffbb64-4c5e-449d-8ecf-987591fe13fc',
+    abilityId: '26ffbb64-4c5e-449d-8ecf-987591fe13fc', // gets removed during e2e test 'returns 403 for User role when trying to delete special-ability of another user'
     name: 'Alcohol Tolerance',
     rule: `Alcohol-tolerant drinkers do not have to make Carousing or Poison checks as long as they do not imbibe more units of alcohol than their level in Alcohol Tolerance.
 
@@ -47,23 +47,53 @@ export const SpecialAbilities: ISpecialAbility[] = [
     createdBy: users[2], // admin
   },
   {
-    abilityId: '8067fbf6-eb8c-4dfe-8657-01fffebbcab7',
+    abilityId: '8067fbf6-eb8c-4dfe-8657-01fffebbcab7', // gets removed during e2e test 'successfully deletes the special-ability'
     name: 'Overcharge',
     rule: '-2 penalty to hit, do extra 1D3 (roll 1D6 / 2) damage + set on fire (1D4 per round). Roll 1D20, on a 20 the weapon is unusable until it gets repaired during a rest, or Weapon maintenance check outside of combat. Takes 15 minutes to fix',
     prerequisites: 'Energy weapons',
     apValue: 15,
-    sourceTag: sourceTags[4],
+    sourceTag: sourceTags[2],
     category: 'Combat',
     createdBy: users[2], // admin
   },
   {
-    abilityId: '96283b62-d47e-4668-9fd0-b2e20e6bdbb9',
+    abilityId: '96283b62-d47e-4668-9fd0-b2e20e6bdbb9', // gets removed during e2e test 'returns 401 for unauthorized user'
     name: 'Suppressing fire',
     rule: 'Weapons with 4 rounds or more, no precision rifles: Fire 4 times in one combat round with a -4 penalty to hit (roll for each shot)',
     prerequisites: 'Semi-auto Ballistic weapons with more than 4 bullets',
     apValue: 20,
-    sourceTag: sourceTags[4],
+    sourceTag: sourceTags[2],
     category: 'Combat',
     createdBy: users[2], // admin
+  },
+  {
+    abilityId: '219b09b9-2f24-4219-85e7-a31e384ab27d',
+    name: 'Scan surroundings',
+    rule: 'Release a drone and over one minute gather information about the area of max 20x20 meters. Can x-ray through wood and has thermal vision',
+    prerequisites: '',
+    apValue: 20,
+    sourceTag: sourceTags[2],
+    category: 'General',
+    createdBy: users[0], // user 1
+  },
+  {
+    abilityId: '5976be28-a434-4f24-ac45-ced5d9029bfc', // gets removed during e2e test 'returns 200 for User role when trying to delete their own special-ability'
+    name: 'Divide by zero',
+    rule: 'Temporarily confuse computer-based minds and logic systems, reducing their accuracy and defense by -2, or providing disadvantage on logic-based checks. Roll Hacking(woodworking) and lasts QL Combat rounds. Is an action',
+    prerequisites: '',
+    apValue: 20,
+    sourceTag: sourceTags[2],
+    category: 'Combat',
+    createdBy: users[0], // user 1
+  },
+  {
+    abilityId: 'ddad8337-f5e9-4f4f-8ff9-31fc5fd3529c',
+    name: 'Curve Bullet',
+    rule: 'Requires being mana-aware. Ignore cover by curving the bullet around it. Damage -2.',
+    prerequisites: 'Ballistic weapons only',
+    apValue: 20,
+    sourceTag: sourceTags[2],
+    category: 'Combat',
+    createdBy: users[1], // user 2
   },
 ];

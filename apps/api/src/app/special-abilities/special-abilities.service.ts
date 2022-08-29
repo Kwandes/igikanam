@@ -58,6 +58,7 @@ export class SpecialAbilitiesService {
     });
     if (
       user.role !== Role.admin &&
+      foundSpecialAbility.sourceTag.name !== 'default' &&
       foundSpecialAbility.createdBy.userId !== user.userId
     ) {
       throw new ForbiddenException();
@@ -100,7 +101,13 @@ export class SpecialAbilitiesService {
    * @returns void or EntityNotFound error.
    */
   async perish(id: string, user: IJwtInfo): Promise<void> {
-    await this.findOne(id, user); // verify it exists and belongs to the given user
+    const found = await this.findOne(id, user); // verify it exists and belongs to the given user
+    if (
+      found.sourceTag.name === 'default' &&
+      found.createdBy.userId !== user.userId
+    ) {
+      throw new ForbiddenException();
+    }
     const response = await this.specialAbilityRepo.delete({
       abilityId: id,
     });
