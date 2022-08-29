@@ -53,7 +53,10 @@ export class SkillsService {
       },
       relations: ['createdBy', 'sourceTag'],
     });
-    if (user.role !== Role.admin && foundSkill.createdBy !== user) {
+    if (
+      user.role !== Role.admin &&
+      foundSkill.createdBy.userId !== user.userId
+    ) {
       throw new ForbiddenException();
     }
     return foundSkill;

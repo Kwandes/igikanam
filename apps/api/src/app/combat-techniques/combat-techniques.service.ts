@@ -56,7 +56,10 @@ export class CombatTechniquesService {
       },
       relations: ['createdBy', 'sourceTag'],
     });
-    if (user.role !== Role.admin && foundCombatTechnique.createdBy !== user) {
+    if (
+      user.role !== Role.admin &&
+      foundCombatTechnique.createdBy.userId !== user.userId
+    ) {
       throw new ForbiddenException();
     }
     return foundCombatTechnique;
