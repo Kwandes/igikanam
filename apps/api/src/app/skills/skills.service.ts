@@ -55,6 +55,7 @@ export class SkillsService {
     });
     if (
       user.role !== Role.admin &&
+      foundSkill.sourceTag.name !== 'default' &&
       foundSkill.createdBy.userId !== user.userId
     ) {
       throw new ForbiddenException();
@@ -114,7 +115,13 @@ export class SkillsService {
    * @returns void or EntityNotFound error.
    */
   async perish(id: string, user: IJwtInfo): Promise<void> {
-    await this.findOne(id, user); // verify it exists and belongs to the given user
+    const found = await this.findOne(id, user); // verify it exists and belongs to the given user
+    if (
+      found.sourceTag.name === 'default' &&
+      found.createdBy.userId !== user.userId
+    ) {
+      throw new ForbiddenException();
+    }
     const response = await this.skillRepo.delete({
       skillId: id,
     });
