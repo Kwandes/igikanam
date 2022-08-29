@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
+import { CombatTechniquesModule } from './combat-techniques/combat-techniques.module';
 import { configService } from './config/config.service';
 import { LoggerMiddleware } from './middleware/logging.middleware';
 import { SkillsModule } from './skills/skills.module';
@@ -18,6 +19,7 @@ import { UsersModule } from './users/users.module';
     SourceTagsModule,
     SpecialAbilitiesModule,
     SkillsModule,
+    CombatTechniquesModule,
   ],
   controllers: [AppController],
   providers: [],
