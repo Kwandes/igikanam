@@ -4,7 +4,7 @@ import { users } from './users.constant';
 
 export const combatTechniques: ICombatTechnique[] = [
   {
-    combatTechniqueId: 'e025993c-10d4-4114-93d3-44049e4d9c98',
+    combatTechniqueId: '92aedc84-e0d8-4ff4-9549-f1ccabb55de3',
     name: 'Blowguns',
     rating: 6,
     improvementCost: 'B',
@@ -14,7 +14,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: 'c44426f2-5582-4da7-bc3c-611a88957799',
+    combatTechniqueId: '67708076-e2ef-45c0-8846-e3e27b33b6cf',
     name: 'Bows',
     rating: 6,
     improvementCost: 'C',
@@ -24,7 +24,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: '6c645a39-93b0-46b5-9125-68e587657ae2',
+    combatTechniqueId: '629197eb-1b0b-42d8-9b45-145986ca4219',
     name: 'Brawling',
     rating: 6,
     improvementCost: 'B',
@@ -34,7 +34,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: '3fe0a666-a061-445e-8348-fb551dc123c0',
+    combatTechniqueId: '7a712017-2273-4b41-8dd7-9ac3b0b2d7ba',
     name: 'Chain Weapons',
     rating: 6,
     improvementCost: 'C',
@@ -44,7 +44,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: '5fb39f9f-3bf9-4a68-a056-c2e54465b590',
+    combatTechniqueId: '94469077-6d2f-4006-a84d-af9f2cd28876',
     name: 'Crossbows',
     rating: 6,
     improvementCost: 'B',
@@ -54,7 +54,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: '553b7e7f-4e95-420b-9b05-8453d0a31747',
+    combatTechniqueId: '06ffbca6-020f-403f-b13a-3fc605325e2f',
     name: 'Daggers',
     rating: 6,
     improvementCost: 'B',
@@ -64,7 +64,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: '20054cd5-4b02-48c8-8baa-6fc43b3f3c09',
+    combatTechniqueId: 'a0822c14-9134-4d41-a6d7-7f1cc6d5903e',
     name: 'Discuses',
     rating: 6,
     improvementCost: 'C',
@@ -74,7 +74,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: '2ae980b8-fd96-4565-a062-e4db13d25d9a',
+    combatTechniqueId: 'd8cf5bbf-19b5-4090-bdde-b0d4cb8b922c',
     name: 'Fencing Weapons',
     rating: 6,
     improvementCost: 'C',
@@ -190,7 +190,7 @@ export const combatTechniques: ICombatTechnique[] = [
     improvementCost: 'C',
     primaryAttribute: 'AGI/STR',
     category: 'Cybernetics',
-    sourceTag: sourceTags[1],
+    sourceTag: sourceTags[2],
     createdBy: users[2], // admin
   },
 ];

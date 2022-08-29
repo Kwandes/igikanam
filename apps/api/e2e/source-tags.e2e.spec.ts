@@ -120,20 +120,20 @@ describe('SourceTagController (e2e)', () => {
   describe('GET /source-tags/:id', () => {
     it('returns 401 for unauthorized user', () => {
       return request(app.getHttpServer())
-        .get('/source-tags/e025993c-10d4-4114-93d3-44049e4d9c98')
+        .get('/source-tags/7d495bb5-0129-4663-a72b-428ae12d38a8')
         .expect(403);
     });
 
     it('returns 403 for User role when trying to access tag of another user', () => {
       return request(app.getHttpServer())
-        .get('/source-tags/e025993c-10d4-4114-93d3-44049e4d9c98') // set through the seeding service
+        .get('/source-tags/a4276f17-6f3a-48b2-b98c-a60a0bbee347') // set through the seeding service
         .set('Authorization', `Bearer ${userAccessToken}`)
         .expect(403);
     });
 
     it('returns 200 for User role when trying to access their own tag', () => {
       return request(app.getHttpServer())
-        .get('/source-tags/c44426f2-5582-4da7-bc3c-611a88957799') // set through the seeding service
+        .get('/source-tags/2e8a66f2-8554-4377-870d-f7fbf1949e96') // set through the seeding service
         .set('Authorization', `Bearer ${userAccessToken}`)
         .expect(200);
     });
@@ -147,12 +147,12 @@ describe('SourceTagController (e2e)', () => {
 
     it('returns a a single source tag', () => {
       return request(app.getHttpServer())
-        .get('/source-tags/e025993c-10d4-4114-93d3-44049e4d9c98') // set through the seeding service
+        .get('/source-tags/2e8a66f2-8554-4377-870d-f7fbf1949e96') // set through the seeding service
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .expect(200)
         .expect((response) => {
           expect(response.body.tagId).toStrictEqual(
-            'e025993c-10d4-4114-93d3-44049e4d9c98'
+            '2e8a66f2-8554-4377-870d-f7fbf1949e96'
           );
         });
     });
@@ -206,13 +206,13 @@ describe('SourceTagController (e2e)', () => {
   describe('DELETE /source-tags/:id', () => {
     it('returns 401 for unauthorized user', () => {
       return request(app.getHttpServer())
-        .delete('/source-tags/e025993c-10d4-4114-93d3-44049e4d9c98')
+        .delete('/source-tags/afba26a3-c387-4e52-876f-72f713025524') // ID doesn't actually exist
         .expect(403);
     });
 
     it('returns 403 for User role when trying to delete tag of another user', () => {
       return request(app.getHttpServer())
-        .delete('/source-tags/e025993c-10d4-4114-93d3-44049e4d9c98') // set through the seeding service
+        .delete('/source-tags/6817d784-b4b4-462b-ba37-96ae0bf592af') // set through the seeding service
         .set('Authorization', `Bearer ${userAccessToken}`)
         .expect(403);
     });
@@ -233,12 +233,12 @@ describe('SourceTagController (e2e)', () => {
 
     it('successfully deletes the tag', async () => {
       await request(app.getHttpServer())
-        .delete('/source-tags/5fb39f9f-3bf9-4a68-a056-c2e54465b590') // set through the seeding service
+        .delete('/source-tags/7183eb11-890d-48e4-820d-f27149ce2072') // set through the seeding service
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .expect(204);
 
       return request(app.getHttpServer())
-        .get('/source-tags/5fb39f9f-3bf9-4a68-a056-c2e54465b590') // set through the seeding service
+        .get('/source-tags/7183eb11-890d-48e4-820d-f27149ce2072') // set through the seeding service
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .expect(404);
     });

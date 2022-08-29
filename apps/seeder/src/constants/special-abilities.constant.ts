@@ -4,7 +4,7 @@ import { users } from './users.constant';
 
 export const SpecialAbilities: ISpecialAbility[] = [
   {
-    abilityId: 'e025993c-10d4-4114-93d3-44049e4d9c98',
+    abilityId: 'db978150-1a4d-452d-9ee3-84d4d04de55d',
     name: 'Grapple',
     rule: 'You can only grapple opponents of an equal or smaller size category. Grappling requires a successful Brawling check. An opponent who can’t defend is pinned down. A grappled opponent gains the states of prone and bound. To escape, the opponent must make a successful check using Feat of Strength (Dragging & Pulling). You cannot defend as long as you hold your opponent. You need both hands free to grapple an enemy',
     prerequisites: 'Strength 12',
@@ -14,7 +14,7 @@ export const SpecialAbilities: ISpecialAbility[] = [
     createdBy: users[2], // admin
   },
   {
-    abilityId: 'c44426f2-5582-4da7-bc3c-611a88957799',
+    abilityId: 'f4180fde-2192-4231-8c9f-94dc03b4132f',
     name: 'Targeted Shot',
     rule: 'Target a specific hit zone with a ranged weapon. To do so, your attack receives a penalty based on the zone you are trying to hit',
     prerequisites: 'Dexterity 13',
@@ -24,7 +24,7 @@ export const SpecialAbilities: ISpecialAbility[] = [
     createdBy: users[2], // admin
   },
   {
-    abilityId: '6c645a39-93b0-46b5-9125-68e587657ae2',
+    abilityId: '2b59835a-6aad-4ed5-87f8-4b3d1fb2f149',
     name: 'Analyst',
     rule: 'The special ability Analyst lets you analyze artifacts, magical creatures, and spells. Heroes with this SA can make a check using Magical Lore (appropriate application) and collect more QL than usual (see Magical Analysis on Core Rules page 268). Depending on the QL, you get a clearer picture of the object’s uses, the type of creature, or the spell’s magical effect. This SA gives you a new use of the skill Magical Lore',
     prerequisites: 'Magical lore 4',
@@ -34,7 +34,7 @@ export const SpecialAbilities: ISpecialAbility[] = [
     createdBy: users[2], // admin
   },
   {
-    abilityId: '3fe0a666-a061-445e-8348-fb551dc123c0',
+    abilityId: '26ffbb64-4c5e-449d-8ecf-987591fe13fc',
     name: 'Alcohol Tolerance',
     rule: `Alcohol-tolerant drinkers do not have to make Carousing or Poison checks as long as they do not imbibe more units of alcohol than their level in Alcohol Tolerance.
 
@@ -47,7 +47,7 @@ export const SpecialAbilities: ISpecialAbility[] = [
     createdBy: users[2], // admin
   },
   {
-    abilityId: '5fb39f9f-3bf9-4a68-a056-c2e54465b590',
+    abilityId: '8067fbf6-eb8c-4dfe-8657-01fffebbcab7',
     name: 'Overcharge',
     rule: '-2 penalty to hit, do extra 1D3 (roll 1D6 / 2) damage + set on fire (1D4 per round). Roll 1D20, on a 20 the weapon is unusable until it gets repaired during a rest, or Weapon maintenance check outside of combat. Takes 15 minutes to fix',
     prerequisites: 'Energy weapons',
@@ -57,7 +57,7 @@ export const SpecialAbilities: ISpecialAbility[] = [
     createdBy: users[2], // admin
   },
   {
-    abilityId: 'a5f39741-ad2a-4492-ba53-fd8cd6854da1',
+    abilityId: '96283b62-d47e-4668-9fd0-b2e20e6bdbb9',
     name: 'Suppressing fire',
     rule: 'Weapons with 4 rounds or more, no precision rifles: Fire 4 times in one combat round with a -4 penalty to hit (roll for each shot)',
     prerequisites: 'Semi-auto Ballistic weapons with more than 4 bullets',

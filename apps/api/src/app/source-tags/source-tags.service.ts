@@ -47,6 +47,7 @@ export class SourceTagsService {
     });
     if (
       user.role !== Role.admin &&
+      foundSourceTag.name !== 'default' &&
       foundSourceTag.createdBy.userId !== user.userId
     ) {
       throw new ForbiddenException();

@@ -4,7 +4,7 @@ import { users } from './users.constant';
 
 export const skills: ISkill[] = [
   {
-    skillId: 'e025993c-10d4-4114-93d3-44049e4d9c98',
+    skillId: '135d9304-4ffb-4f85-bc40-39d24c5bf42e',
     name: 'Body Control',
     check: 'AGI/AGI/CON',
     quality: 'the adventurer can more quickly squirm out of restraints.',
@@ -23,7 +23,7 @@ export const skills: ISkill[] = [
     createdBy: users[2], // admin
   },
   {
-    skillId: 'c44426f2-5582-4da7-bc3c-611a88957799',
+    skillId: '960d1de0-ff01-4b13-8f32-f54a4020b10a',
     name: 'Disguise',
     check: 'INT/CHA/AGI',
     quality: 'it’s hard to see through the disguise.',
@@ -41,7 +41,7 @@ export const skills: ISkill[] = [
     createdBy: users[2], // admin
   },
   {
-    skillId: '6c645a39-93b0-46b5-9125-68e587657ae2',
+    skillId: 'b8dca268-037f-407d-99e5-d41f63b4d628', // gets removed during e2e tests 'successfully deletes the skill'
     name: 'Animal Lore',
     check: 'COU/COU/CHA',
     quality: 'the hero gains more information about an animal.',
@@ -58,7 +58,7 @@ export const skills: ISkill[] = [
     createdBy: users[2], // admin
   },
   {
-    skillId: '3fe0a666-a061-445e-8348-fb551dc123c0',
+    skillId: 'a4af674f-94eb-487e-902d-01bfee757a44', // gets removed during e2e test 'returns 401 for unauthorized user'
     name: 'Astronomy',
     check: 'SGC/SGC/INT',
     quality:
@@ -77,9 +77,9 @@ export const skills: ISkill[] = [
     createdBy: users[2], // admin
   },
   {
-    skillId: '5fb39f9f-3bf9-4a68-a056-c2e54465b590',
+    skillId: '2bc66689-f987-4d6d-bfe3-ca28c80b4cad', // gets removed during e2e test 'returns 403 for User role when trying to delete skill of another user'
     name: 'Alchemy',
-    check: '',
+    check: 'COU/SGC/DEX',
     quality: 'the potion is of better quality',
     failedCheck:
       'the elixir is ruined, or an analysis fails to yield a useful result.',
@@ -93,5 +93,53 @@ export const skills: ISkill[] = [
     sourceTag: sourceTags[0],
     category: 'Craft',
     createdBy: users[2], // admin
+  },
+  {
+    skillId: '0d7c0610-8407-4d45-9031-7d6819f0959a',
+    name: 'Foraging',
+    check: 'COU/SGC/INT',
+    quality: 'you found more resources',
+    failedCheck: "you don't find anything of value.",
+    criticalSuccess: 'find high quality items.',
+    botch: 'you find an item that actually is harmful.',
+    improvementCost: 'C',
+    applications: 'Finding food, Gathering resources',
+    uses: '',
+    newApplication: '',
+    sourceTag: sourceTags[2], // space
+    category: 'Craft',
+    createdBy: users[0], // user
+  },
+  {
+    skillId: 'd2b704cb-d2d4-4b1b-9e4a-f203e0c9edbd', // gets removed during e2e test 'returns 200 for User role when trying to delete their own skill'
+    name: 'Hacking',
+    check: 'SGC/SGC/INT',
+    quality: 'you discover more information',
+    failedCheck: 'you fail to find any information.',
+    criticalSuccess: 'You gain full access.',
+    botch: 'your intrusion is detected and are locked out.',
+    improvementCost: 'C',
+    applications: '',
+    uses: '',
+    newApplication: '',
+    sourceTag: sourceTags[2], // space
+    category: 'Craft',
+    createdBy: users[0], // user
+  },
+  {
+    skillId: 'f76de747-2e9c-4f16-85fc-445261303705',
+    name: 'Explosives',
+    check: 'COU/SGC/INT',
+    quality: 'the explosive is stronger',
+    failedCheck: 'the explosive is ruined, or a disarming attempt fails.',
+    criticalSuccess: 'create the perfect explosive for the use case.',
+    botch: 'the explosive explodes dealing propertional but reduced damage.',
+    improvementCost: 'C',
+    applications: 'Explosives, Disarming, Booby Traps',
+    uses: '',
+    newApplication: '',
+    sourceTag: sourceTags[2], // space
+    category: 'Craft',
+    createdBy: users[1], // user
   },
 ];

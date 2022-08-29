@@ -3,27 +3,32 @@ import { users } from './users.constant';
 
 export const sourceTags: ISourceTag[] = [
   {
-    tagId: 'e025993c-10d4-4114-93d3-44049e4d9c98',
+    tagId: '7d495bb5-0129-4663-a72b-428ae12d38a8',
     name: 'default',
     createdBy: users[2], // admin
   },
   {
-    tagId: 'c44426f2-5582-4da7-bc3c-611a88957799',
+    tagId: '6817d784-b4b4-462b-ba37-96ae0bf592af', // gets removed during e2e test 'returns 403 for User role when trying to delete tag of another user'
+    name: 'harry potter',
+    createdBy: users[2], // admin
+  },
+  {
+    tagId: '2e8a66f2-8554-4377-870d-f7fbf1949e96',
     createdBy: users[0], // user 1
     name: 'space',
   },
   {
-    tagId: '6c645a39-93b0-46b5-9125-68e587657ae2',
+    tagId: '6c645a39-93b0-46b5-9125-68e587657ae2', // gets removed during e2e test 'returns 200 for User role when trying to delete their own tag'
     createdBy: users[0], // user 1
     name: 'meme',
   },
   {
-    tagId: '5fb39f9f-3bf9-4a68-a056-c2e54465b590',
+    tagId: 'a4276f17-6f3a-48b2-b98c-a60a0bbee347',
     createdBy: users[1], // user 2
     name: 'soomerk',
   },
   {
-    tagId: '4e897fe7-734e-4cab-95fb-46cd6647f9c8',
+    tagId: '7183eb11-890d-48e4-820d-f27149ce2072', // gets removed during e2e test 'successfully deletes the tag'
     createdBy: users[2], // user 2
     name: 'shadow power',
   },

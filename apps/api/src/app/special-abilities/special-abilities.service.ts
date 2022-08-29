@@ -56,7 +56,10 @@ export class SpecialAbilitiesService {
       },
       relations: ['createdBy', 'sourceTag'],
     });
-    if (user.role !== Role.admin && foundSpecialAbility.createdBy !== user) {
+    if (
+      user.role !== Role.admin &&
+      foundSpecialAbility.createdBy.userId !== user.userId
+    ) {
       throw new ForbiddenException();
     }
     return foundSpecialAbility;

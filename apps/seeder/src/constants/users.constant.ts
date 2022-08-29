@@ -3,19 +3,19 @@ import { IUser, Role } from '@igikanam/interfaces';
 // password: abcDEF123
 export const users: IUser[] = [
   {
-    userId: '17631e48-c5de-432f-826e-a1461a2928ed',
+    userId: '9a4c374c-4b8d-436c-bf9e-94f435c8fee5',
     email: 'user@example.com',
     password: '$2b$10$QItH8MlMrmcye0WB1n4SuuMyRAv2gR66C/qpzXAoeTgAI7Ew2dr0K',
     role: Role.user,
   },
   {
-    userId: '5b5829b4-efd2-4c44-8c2b-648e54768fd7',
+    userId: '2370d90d-2825-40aa-9a8b-d3be4131b3fc',
     email: 'user2@example.com',
     password: '$2b$10$QItH8MlMrmcye0WB1n4SuuMyRAv2gR66C/qpzXAoeTgAI7Ew2dr0K',
     role: Role.user,
   },
   {
-    userId: 'e1aee996-3d70-48ad-8d5f-fd99e2d2610c',
+    userId: 'abe222df-a26d-4bfe-8276-a4f7b2a5ed9f',
     email: 'admin@example.com',
     password: '$2b$10$QItH8MlMrmcye0WB1n4SuuMyRAv2gR66C/qpzXAoeTgAI7Ew2dr0K',
     role: Role.admin,
