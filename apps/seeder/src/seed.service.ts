@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Connection, DataSource } from 'typeorm';
+import { CombatTechniquesSeederService } from './services/combat-techniques.service';
 import { SkillsSeederService } from './services/skills.service';
 import { SourceTagsSeederService } from './services/source-tags.service';
 import { SpecialAbilitiesSeederService } from './services/special-abilties.service';
@@ -14,6 +15,7 @@ export class SeedService {
     private readonly sourceTagsService: SourceTagsSeederService,
     private readonly specialAbilitiesService: SpecialAbilitiesSeederService,
     private readonly skillsService: SkillsSeederService,
+    private readonly combatTechniquesServices: CombatTechniquesSeederService,
     private dataSource: DataSource
   ) {}
 
@@ -29,6 +31,7 @@ export class SeedService {
     await this.seedSourceTags();
     await this.seedSpecialAbilities();
     await this.seedSkills();
+    await this.seedCombatTechniques();
   }
 
   // ====================================
@@ -139,6 +142,19 @@ export class SeedService {
       return response;
     } catch (error) {
       this.logger.warn(`❌ Skills failed to seed`);
+      this.logger.error(error);
+    }
+  }
+
+  async seedCombatTechniques() {
+    try {
+      const response = await Promise.all(
+        this.combatTechniquesServices.create()
+      );
+      this.logger.debug(`✅ Combat Techniques created: ${response.length}`);
+      return response;
+    } catch (error) {
+      this.logger.warn(`❌ Combat Techniques failed to seed`);
       this.logger.error(error);
     }
   }

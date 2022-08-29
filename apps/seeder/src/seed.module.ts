@@ -1,8 +1,15 @@
-import { Skill, SourceTag, SpecialAbility, User } from '@igikanam/models';
+import {
+  CombatTechnique,
+  Skill,
+  SourceTag,
+  SpecialAbility,
+  User,
+} from '@igikanam/models';
 import { DynamicModule, Logger, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configService } from './config.service';
 import { SeedService } from './seed.service';
+import { CombatTechniquesSeederService } from './services/combat-techniques.service';
 import { SkillsSeederService } from './services/skills.service';
 import { SourceTagsSeederService } from './services/source-tags.service';
 import { SpecialAbilitiesSeederService } from './services/special-abilties.service';
@@ -15,7 +22,13 @@ export class SeedModule {
       module: SeedModule,
       imports: [
         TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
-        TypeOrmModule.forFeature([User, SourceTag, SpecialAbility, Skill]),
+        TypeOrmModule.forFeature([
+          User,
+          SourceTag,
+          SpecialAbility,
+          Skill,
+          CombatTechnique,
+        ]),
       ],
       providers: [
         Logger,
@@ -24,6 +37,7 @@ export class SeedModule {
         SourceTagsSeederService,
         SpecialAbilitiesSeederService,
         SkillsSeederService,
+        CombatTechniquesSeederService,
       ],
       exports: [SeedService],
     };
