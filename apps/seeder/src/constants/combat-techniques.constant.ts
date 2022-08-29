@@ -154,7 +154,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: 'b973707f-5879-4842-ab09-d481f6f702a4',
+    combatTechniqueId: 'b973707f-5879-4842-ab09-d481f6f702a4', // gets removed during e2e test 'successfully deletes the CombatTechnique'
     name: 'Two-Handed Impact Weapons',
     rating: 6,
     improvementCost: 'C',
@@ -164,7 +164,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: 'd9bdb336-cc27-49e4-b1b4-a262a4f3a465',
+    combatTechniqueId: 'd9bdb336-cc27-49e4-b1b4-a262a4f3a465', // gets removed during e2e test 'returns 403 for User role when trying to delete CombatTechnique of another user'
     name: 'Two-Handed swords',
     rating: 6,
     improvementCost: 'C',
@@ -174,7 +174,7 @@ export const combatTechniques: ICombatTechnique[] = [
     createdBy: users[2], // admin
   },
   {
-    combatTechniqueId: 'f2f20922-7a09-4919-a1f2-27a86551ad08',
+    combatTechniqueId: 'f2f20922-7a09-4919-a1f2-27a86551ad08', // gets removed during e2e test 'DELETE /CombatTechniques/:id'
     name: 'Whips',
     rating: 6,
     improvementCost: 'B',
@@ -191,6 +191,26 @@ export const combatTechniques: ICombatTechnique[] = [
     primaryAttribute: 'AGI/STR',
     category: 'Cybernetics',
     sourceTag: sourceTags[2],
-    createdBy: users[2], // admin
+    createdBy: users[0], // user1
+  },
+  {
+    combatTechniqueId: 'b1fc3fd7-53a6-4925-a290-5bbd37123135', // gets removed during e2e test 'returns 200 for User role when trying to delete their own CombatTechnique'
+    name: 'Biological Weapons',
+    rating: 6,
+    improvementCost: 'B',
+    primaryAttribute: 'AGI',
+    category: 'Ranged',
+    sourceTag: sourceTags[2],
+    createdBy: users[0], // user1
+  },
+  {
+    combatTechniqueId: 'f45a0689-be2d-474c-9927-8b73c3075856',
+    name: 'Two-handed Ranged Weapons',
+    rating: 6,
+    improvementCost: 'C',
+    primaryAttribute: 'STR',
+    category: 'Ranged',
+    sourceTag: sourceTags[2],
+    createdBy: users[1], // user2
   },
 ];

@@ -58,6 +58,7 @@ export class CombatTechniquesService {
     });
     if (
       user.role !== Role.admin &&
+      foundCombatTechnique.sourceTag.name !== 'default' &&
       foundCombatTechnique.createdBy.userId !== user.userId
     ) {
       throw new ForbiddenException();
@@ -105,7 +106,13 @@ export class CombatTechniquesService {
    * @returns void or EntityNotFound error.
    */
   async perish(id: string, user: IJwtInfo): Promise<void> {
-    await this.findOne(id, user); // verify it exists and belongs to the given user
+    const found = await this.findOne(id, user); // verify it exists and belongs to the given user
+    if (
+      found.sourceTag.name === 'default' &&
+      found.createdBy.userId !== user.userId
+    ) {
+      throw new ForbiddenException();
+    }
     const response = await this.combatTechniqueRepo.delete({
       combatTechniqueId: id,
     });
