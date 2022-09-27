@@ -1,3 +1,4 @@
+export * from './lib/advantage.entity';
 export * from './lib/base.entity';
 export * from './lib/combat-technique.entity';
 export * from './lib/created-by.entity';

@@ -1,3 +1,4 @@
+export * from './lib/advantages.interface';
 export * from './lib/attribute.interface';
 export * from './lib/auth.dto';
 export * from './lib/auth.interface';
