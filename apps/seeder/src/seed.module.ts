@@ -1,4 +1,5 @@
 import {
+  Advantage,
   CombatTechnique,
   Skill,
   SourceTag,
@@ -9,6 +10,7 @@ import { DynamicModule, Logger, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configService } from './config.service';
 import { SeedService } from './seed.service';
+import { AdvantagesSeederService } from './services/advantages.service';
 import { CombatTechniquesSeederService } from './services/combat-techniques.service';
 import { SkillsSeederService } from './services/skills.service';
 import { SourceTagsSeederService } from './services/source-tags.service';
@@ -28,6 +30,7 @@ export class SeedModule {
           SpecialAbility,
           Skill,
           CombatTechnique,
+          Advantage,
         ]),
       ],
       providers: [
@@ -38,6 +41,7 @@ export class SeedModule {
         SpecialAbilitiesSeederService,
         SkillsSeederService,
         CombatTechniquesSeederService,
+        AdvantagesSeederService,
       ],
       exports: [SeedService],
     };

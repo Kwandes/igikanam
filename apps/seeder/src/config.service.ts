@@ -1,4 +1,5 @@
 import {
+  Advantage,
   CombatTechnique,
   Skill,
   SourceTag,
@@ -48,7 +49,14 @@ class ConfigService {
       password: this.getValue('POSTGRES_PASSWORD', false) || 'root',
       database: this.getValue('POSTGRES_DATABASE', false) || 'igikanam',
 
-      entities: [User, SourceTag, SpecialAbility, Skill, CombatTechnique],
+      entities: [
+        User,
+        SourceTag,
+        SpecialAbility,
+        Skill,
+        CombatTechnique,
+        Advantage,
+      ],
     };
   }
 }
