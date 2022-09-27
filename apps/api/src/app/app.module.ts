@@ -1,5 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AdvantagesModule } from './advantages/advantages.module';
 
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
@@ -20,6 +21,7 @@ import { UsersModule } from './users/users.module';
     SpecialAbilitiesModule,
     SkillsModule,
     CombatTechniquesModule,
+    AdvantagesModule,
   ],
   controllers: [AppController],
   providers: [],
