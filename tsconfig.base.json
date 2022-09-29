@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@igikanam/interfaces": ["libs/interfaces/src/index.ts"],
+      "@igikanam/local-storage": ["libs/local-storage/src/index.ts"],
       "@igikanam/models": ["libs/models/src/index.ts"]
     }
   },
