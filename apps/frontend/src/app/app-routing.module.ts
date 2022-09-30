@@ -12,6 +12,7 @@ import { SkillsComponent } from './pages/character/skills/skills.component';
 import { SpecialAbilitiesComponent } from './pages/character/special-abilities/special-abilities.component';
 import { SpellsComponent } from './pages/character/spells/spells.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 import { AuthGuard } from './shared/helpers/auth.guard';
 
 const routes: Routes = [
@@ -19,6 +20,11 @@ const routes: Routes = [
     path: 'login',
     title: 'Log in',
     component: LoginComponent,
+  },
+  {
+    path: 'signup',
+    title: 'Sign up',
+    component: SignupComponent,
   },
   {
     path: 'characters',

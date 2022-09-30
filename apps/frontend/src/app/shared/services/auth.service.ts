@@ -6,7 +6,6 @@ import {
   ILoginResponse,
   ISignupRequest,
   ISignupResponse,
-  Role,
 } from '@igikanam/interfaces';
 import { LocalStorageService, LocalStorageVars } from '@igikanam/local-storage';
 import { Observable } from 'rxjs';
@@ -49,12 +48,12 @@ export class AuthService {
    * @param params user credentials
    * @returns observable of the API request
    */
-  register(params: ISignupRequest, role: Role): Observable<ISignupResponse> {
+  register(params: ISignupRequest): Observable<ISignupResponse> {
     // Remove null and undefined values
     params = JSON.parse(JSON.stringify(params));
 
     return this.http.post<ISignupResponse>(
-      `${env.apiUrl}/api/auth/signup?role=${role}`,
+      `${env.apiUrl}/api/auth/signup`,
       params,
       httpOptions
     );

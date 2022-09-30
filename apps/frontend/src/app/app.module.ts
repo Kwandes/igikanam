@@ -19,12 +19,14 @@ import { SkillsComponent } from './pages/character/skills/skills.component';
 import { SpecialAbilitiesComponent } from './pages/character/special-abilities/special-abilities.component';
 import { SpellsComponent } from './pages/character/spells/spells.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 import { authInterceptorProviders } from './shared/helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    SignupComponent,
     CharacterListComponent,
     OverviewComponent,
     AttributesComponent,

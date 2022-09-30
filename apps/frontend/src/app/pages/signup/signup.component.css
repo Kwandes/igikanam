@@ -13,8 +13,6 @@
   flex-direction: column;
   margin-bottom: 40vh;
   min-width: 300px;
-  padding: 20px;
-  border-radius: 20px;
 }
 
 .input {
@@ -24,6 +22,12 @@
   flex-direction: column;
   padding: 10px;
   width: 100%;
+}
+
+#readTheBoringStuffText {
+  margin-top: 2px;
+  font-size: x-small;
+  color: #42d6ca;
 }
 
 input {
@@ -40,7 +44,6 @@ input:focus-visible {
   padding-bottom: 0;
   border-bottom: 2px rgba(128, 0, 128, 0.5) solid;
   text-decoration: none;
-  background-color: transparent;
 }
 
 hr {
@@ -48,7 +51,7 @@ hr {
   width: 100%;
 }
 
-#login-btn {
+#signup-btn {
   font-size: large;
 }
 

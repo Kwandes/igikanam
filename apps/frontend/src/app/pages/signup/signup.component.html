@@ -1,0 +1,107 @@
+<div *ngIf="isLoggedIn" class="wrapper">
+  <h1>You're already logged in. Log out first before you try to sign up</h1>
+  <button class="fancy-btn" style="width: 100%" routerLink="/home">
+    Go Home
+  </button>
+</div>
+
+<form
+  *ngIf="!isLoggedIn"
+  (ngSubmit)="onSubmit()"
+  name="signupForm"
+  class="wrapper"
+  [formGroup]="signupForm"
+>
+  <h1>Registration</h1>
+
+  <div class="input">
+    <label for="email">E-mail</label>
+    <input
+      type="email"
+      placeholder="E-mail"
+      formControlName="email"
+      name="email"
+      id="email"
+      autocomplete="email"
+      required
+    />
+    <span
+      class="input-error"
+      *ngIf="
+        this.signupForm.get('email')?.dirty &&
+        this.signupForm.get('email')?.invalid
+      "
+      >The email must be a valid email</span
+    >
+  </div>
+
+  <div class="input">
+    <label for="password">Password</label>
+    <input
+      #password
+      type="password"
+      formControlName="password"
+      placeholder="password"
+      name="password"
+      id="password"
+      autocomplete="current-password"
+      required
+    />
+    <span
+      class="input-error"
+      *ngIf="
+        this.signupForm.get('password')?.dirty &&
+        this.signupForm.get('password')?.invalid
+      "
+      >The password must be minimum 5 characters</span
+    >
+  </div>
+
+  <div
+    class="input"
+    style="display: flex; flex-direction: row; align-items: center"
+  >
+    <input
+      type="checkbox"
+      formControlName="readTheBoringStuff"
+      name="readTheBoringStuff"
+      id="readTheBoringStuff"
+    />
+    <a
+      id="readTheBoringStuffText"
+      href="http://www.bullshit.com/statements/agreement.html"
+      target="_blank"
+      >I have read the terms of conditions and privacy cookies</a
+    >
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    id="signup-btn"
+    [disabled]="signupEnabled()"
+  >
+    Sign up
+  </button>
+
+  <!-- ====== Login in instead and other BS ====== -->
+  <hr />
+
+  <button
+    mat-stroked-button
+    color="primary"
+    type="button"
+    routerLink="/login"
+    id="login-btn"
+  >
+    I already have an account, I wanna log in instead! Sorry I forgot...
+  </button>
+  <br />
+  <div
+    *ngIf="alert"
+    [ngClass]="alert.type === 'info' ? 'alert-info' : 'alert-error'"
+  >
+    {{ alert.message }}
+  </div>
+</form>
