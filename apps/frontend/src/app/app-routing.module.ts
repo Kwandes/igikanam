@@ -11,17 +11,26 @@ import { OverviewComponent } from './pages/character/overview/overview.component
 import { SkillsComponent } from './pages/character/skills/skills.component';
 import { SpecialAbilitiesComponent } from './pages/character/special-abilities/special-abilities.component';
 import { SpellsComponent } from './pages/character/spells/spells.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './shared/helpers/auth.guard';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    title: 'Log in',
+    component: LoginComponent,
+  },
   {
     path: 'characters',
     title: 'Character list',
     component: CharacterListComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'character/:characterId',
     title: 'Character',
     component: CharacterComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
       { path: 'attributes', component: AttributesComponent },

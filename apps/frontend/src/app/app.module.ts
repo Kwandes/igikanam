@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,10 +18,13 @@ import { OverviewComponent } from './pages/character/overview/overview.component
 import { SkillsComponent } from './pages/character/skills/skills.component';
 import { SpecialAbilitiesComponent } from './pages/character/special-abilities/special-abilities.component';
 import { SpellsComponent } from './pages/character/spells/spells.component';
+import { LoginComponent } from './pages/login/login.component';
+import { authInterceptorProviders } from './shared/helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     CharacterListComponent,
     OverviewComponent,
     AttributesComponent,
@@ -37,10 +41,11 @@ import { SpellsComponent } from './pages/character/spells/spells.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     NgModules,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
