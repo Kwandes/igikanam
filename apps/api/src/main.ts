@@ -10,7 +10,7 @@ import { AppModule } from './app/app.module';
 import { EntityNotFoundExceptionFilter } from './app/shared/filters/entity-not-found-exception.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalFilters(new EntityNotFoundExceptionFilter());
