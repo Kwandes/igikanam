@@ -29,15 +29,15 @@ export class CreateAdvantageRequest implements ICreateAdvantageRequest {
     example: 'Weak Astral Body',
   })
   @IsNotEmpty()
-  name: string;
+  name!: string;
   @ApiModelProperty({
     example: `The hero loses one additional AE whenever required to spend AE.`,
   })
   @IsNotEmpty()
-  rule: string;
+  rule!: string;
   @ApiModelProperty({ example: -15 })
   @IsNotEmpty()
-  ap: number;
+  ap!: number;
   @ApiModelProperty({
     description: 'How many levels were taken in the given advantage.',
     example: 2,
@@ -47,10 +47,10 @@ export class CreateAdvantageRequest implements ICreateAdvantageRequest {
   level?: number;
   @ApiModelProperty({ example: 'Advantage Spellcaster' })
   @IsString()
-  prerequisite: string;
+  prerequisite!: string;
   @ApiModelProperty({ example: true })
   @IsNotEmpty()
-  isDisadvantage: boolean;
+  isDisadvantage!: boolean;
   @ApiModelProperty({ example: '80a0d2ac-ec67-482e-9017-909b72a74be7' })
   @IsNotEmpty()
   sourceTagId!: string;

@@ -82,7 +82,7 @@ export class CreateSkillRequest implements ICreateSkillRequest {
   newApplication!: string;
   @ApiModelProperty({ example: '80a0d2ac-ec67-482e-9017-909b72a74be7' })
   @IsNotEmpty()
-  sourceTagId: string;
+  sourceTagId!: string;
   @ApiModelProperty({ example: 'Combat' })
   @IsNotEmpty()
   category!: string;

@@ -5,5 +5,5 @@ export const environment: IEnvironment = {
   production: false,
   envName: 'development',
 
-  apiUrl: window['env'] ? window['env']['apiUrl'] : 'http://localhost:3333',
+  apiUrl: window['env'] ? window['env']['apiUrl'] : 'http://localhost:3333/api',
 };

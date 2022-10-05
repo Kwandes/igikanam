@@ -46,7 +46,7 @@ export class CreateSpecialAbilityRequest
   level?: number;
   @ApiModelProperty({ example: '62ebb7c4bb0c7328b1e712f7' })
   @IsNotEmpty()
-  sourceTagId: string;
+  sourceTagId!: string;
   @ApiModelProperty({ example: 'Combat' })
   @IsNotEmpty()
   category!: string;
