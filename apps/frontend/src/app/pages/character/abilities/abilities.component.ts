@@ -9,7 +9,11 @@ import { AbilitiesService } from '../../../shared/services/abilities.service';
   styleUrls: ['./abilities.component.css'],
 })
 export class AbilitiesComponent implements OnInit {
-  abilities?: ISpecialAbility[];
+  abilities: ISpecialAbility[] = [];
+  selected: ISpecialAbility[] = [];
+  available: ISpecialAbility[] = [];
+  unavailable: ISpecialAbility[] = [];
+  displayedColumns: string[] = ['name', 'category', 'ap', 'actions'];
 
   isLoading = false;
 
@@ -26,10 +30,28 @@ export class AbilitiesComponent implements OnInit {
         this.abilities = response;
         this.isLoading = false;
         console.log('abilities ', this.abilities);
+        this.initLists();
       },
       error: (error: HttpErrorResponse) => {
         console.error(error);
       },
     });
+  }
+
+  initLists(): void {
+    this.available = this.abilities.filter(
+      (item) => !this.selected.includes(item)
+    );
+    this.selected = [...this.selected]; // trigger change detection by creating a new array reference
+  }
+
+  select(ability: ISpecialAbility): void {
+    this.selected.push(ability);
+    this.initLists();
+  }
+
+  remove(ability: ISpecialAbility): void {
+    this.selected = this.selected.filter((item) => item !== ability);
+    this.initLists();
   }
 }

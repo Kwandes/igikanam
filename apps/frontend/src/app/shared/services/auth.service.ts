@@ -34,7 +34,7 @@ export class AuthService {
   login(params: ILoginRequest): Observable<ILoginResponse> {
     const { email, password } = params;
     return this.http.post<ILoginResponse>(
-      `${env.apiUrl}/api/auth/login`,
+      `${env.apiUrl}/auth/login`,
       {
         email,
         password,
@@ -53,7 +53,7 @@ export class AuthService {
     params = JSON.parse(JSON.stringify(params));
 
     return this.http.post<ISignupResponse>(
-      `${env.apiUrl}/api/auth/signup`,
+      `${env.apiUrl}/auth/signup`,
       params,
       httpOptions
     );
@@ -98,6 +98,6 @@ export class AuthService {
    * @param id id of the account.
    */
   public perish(id: string): Observable<void> {
-    return this.http.delete<void>(`${env.apiUrl}/api/auth/${id}`);
+    return this.http.delete<void>(`${env.apiUrl}/auth/${id}`);
   }
 }
